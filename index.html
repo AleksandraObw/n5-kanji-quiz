@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kanji quiz (N5 JLPT)">
+    <meta name="keywords" content="quiz, kanji, japanese, on reading, kun reading, n5, jlpt">
+    <link rel="icon" href="data/icon.png">
+    <link rel="stylesheet" href="styles.css">
+    <title>Kanji Quiz</title>
+</head>
+<body>
+    <div class="body__container container">
+        <div class="container__top-part top-part">
+            <button class="top-part__header header" id="logo">Kanji Quiz</button>
+            <p class="top-part__counter counter hidden" id="q-counter">Question <span id="current-number"></span> of <span id="all-number"></span></p>
+        </div>
+
+        <div class="container__main-part main-part">
+
+            <div class="main-part__start-screen start-screen screen" id="main-screen">
+                <button class="start-screen__start-button button" id="main-start-button">Start quiz</button>
+                <button class="start-screen__start-button button" id="main-change-button">Change number of questions</button>
+            </div>
+
+            <div class="main-part__quiz-screen quiz-screen hidden screen" id="quiz-screen">
+                <p class="quiz-screen__qtext qtext" id="question-text">Question about kanji</p>
+                <p class="quiz-screen__error error hidden" id="error-text">Choose the answer!</p>
+                <form class="quiz-screen__form form">
+                    <input type="radio" class="form__radio radio" name="options" id="option1" value="a" required>
+                    <label class="form__label label button" for="option1" id="answer1">First</label>
+
+                    <input type="radio" class="form__radio radio" name="options" id="option2" value="b">
+                    <label class="form__label label button" for="option2" id="answer2">Second</label>
+
+                    <input type="radio" class="form__radio radio" name="options" id="option3" value="c">
+                    <label class="form__label label button" for="option3" id="answer3">Third</label>
+
+                    <input type="radio" class="form__radio radio" name="options" id="option4" value="d">
+                    <label class="form__label label button" for="option4" id="answer4">Forth </label>
+                </form>
+                <button class="quiz-screen__next-button button next-button" id="quiz-next-button">Next question</button>
+                <button class="quiz-screen__finish-button button finish-button" id="quiz-finish-button">Finish quiz</button>
+            </div>
+
+            <div class="main-part__result-screen result-screen hidden screen" id="result-screen">
+                <p class="result-screen__text text">You got <span id="result-number">10</span> out of <span id="result-all-number">100</span></p>
+                <button class="result-screen__result-button button result-button" id="result-return-button">Return to main screen</button>
+            </div>
+
+            <div class="main-part__number-screen number-screen hidden screen" id="number-screen">
+                <p class="number-screen__text text">Current number of questions in quiz: <span id="qnumber"></span></p>
+                <p class="number-screen__text text" id="info-text">You can enter number from 1 to 50</p>
+                <div class="number-screen__input-group input-group">
+                    <input type="number" class="input-group__input-number input-number" placeholder="Type number of questions here" id="input-number">
+                    <button class="input-group__button button input-button" id="button-number">Submit</button>
+                </div>
+                <button class="number-screen__number-button button number-button" id="number-return-button">Return to main screen</button>
+            </div>
+        
+    </div>
+    
+    <script src="script.js"></script> 
+</body>
+</html>

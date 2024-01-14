@@ -9,8 +9,8 @@ After completing the quiz you will see the number of correct answers.
 There is error message for the scenario when no answer is chosen.
 Adaptive design for mobile and desktop devices.
 
-+ *[View it in action]()*
-+ *[View code]()*
++ *[View it in action on vercel.com](https://vercel.com/aleksandraobw/n5-kanji-quiz/93A2EW2qTqGjyjPqCdjo9aGWKYLE)*
++ *[View code](https://github.com/AleksandraObw/n5-kanji-quiz)*
 
 ![Screenshot](./data/screenshot1.png)
 ![Screenshot](./data/screenshot2.png)

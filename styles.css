@@ -185,6 +185,14 @@ span {
     font-weight: bold;
 }
 
+.wrong-answer {
+    background-color: #EA5E3A;
+}
+
+.right-answer {
+    background-color: #8FAF5A;
+}
+
 @media (max-width: 600px){
     .container {
         height: 90vh;

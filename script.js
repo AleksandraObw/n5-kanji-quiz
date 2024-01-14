@@ -11,6 +11,7 @@ const mainStartButton = document.getElementById('main-start-button')
 const mainChangeButton = document.getElementById('main-change-button')
 const resultReturnButton = document.getElementById('result-return-button')
 const numberReturnButton = document.getElementById('number-return-button')
+const quizCheckButton = document.getElementById('quiz-check-button')
 const quizNextButton = document.getElementById('quiz-next-button')
 const quizFinishButton = document.getElementById('quiz-finish-button')
 
@@ -71,9 +72,15 @@ numberReturnButton.addEventListener('click', event => {
     showMainScreen()
 })
 
+quizCheckButton.addEventListener('click', event => {
+    event.preventDefault()
+    checkAnswer()
+})
+
 quizNextButton.addEventListener('click', event => {
     event.preventDefault()
-    showNextQuestion()
+    renewCounter()
+    showQuestion()
 })
 
 quizFinishButton.addEventListener('click', event => {
@@ -94,7 +101,6 @@ buttonNumber.addEventListener('click', event => {
         infoNumber.classList.add('error-state')
         inputNumber.classList.add('error-state')
     }
-    
     
 })
 
@@ -140,22 +146,7 @@ function showQuizScreen() {
     questionCounter.classList.remove('hidden')
     allNumber.innerHTML = numberOfQuestions
     currentNumber.innerHTML = currentQuestion
-    quizNextButton.classList.remove('hidden')
-    quizFinishButton.classList.add('hidden')
     showQuestion()
-}
-
-function showNextQuestion() {
-    checkAnswer()
-    if (!isError) {
-        currentQuestion = Number(currentQuestion) + 1
-        currentNumber.innerHTML = currentQuestion
-        if (Number(currentQuestion) === Number(numberOfQuestions)) {
-            quizNextButton.classList.add('hidden')
-            quizFinishButton.classList.remove('hidden')
-        }
-    showQuestion()
-    }  
 }
 
 function checkAnswer() {
@@ -174,6 +165,14 @@ function checkAnswer() {
         isError = true
     }
     if (!isError) {
+        showRightWrongAnswer()
+        if (Number(currentQuestion) === Number(numberOfQuestions)) {
+            quizCheckButton.classList.add('hidden')
+            quizFinishButton.classList.remove('hidden')
+        } else {
+            quizCheckButton.classList.add('hidden')
+            quizNextButton.classList.remove('hidden')
+        }
         if (currentAnswer === correctAnswer) {
             totalResult = totalResult + 1
         }
@@ -181,10 +180,12 @@ function checkAnswer() {
 }
 
 function showQuestion() {
-    option1.checked = false
-    option2.checked = false
-    option3.checked = false
-    option4.checked = false
+    quizCheckButton.classList.remove('hidden')
+    quizNextButton.classList.add('hidden')
+    quizFinishButton.classList.add('hidden')
+
+    hideRightWrongAnswer()
+    uncheckAnswers()
 
     questionId = Math.floor(Math.random()*(51))
 
@@ -199,5 +200,50 @@ function showQuestion() {
         answer4.innerHTML = data.result[questionId].d
         correctAnswer = data.result[questionId].correct
       })
+}
 
+function uncheckAnswers() {
+    option1.checked = false
+    option2.checked = false
+    option3.checked = false
+    option4.checked = false
+}
+
+function showRightWrongAnswer() {
+    uncheckAnswers()
+    if (correctAnswer === 'a') {
+        answer1.classList.add('right-answer')
+    } else if (correctAnswer === 'b') {
+        answer2.classList.add('right-answer')
+    } else if (correctAnswer === 'c') {
+        answer3.classList.add('right-answer')
+    } else if (correctAnswer === 'd') {
+        answer4.classList.add('right-answer')
+    }
+    if (currentAnswer !== correctAnswer) {
+        if (currentAnswer === 'a') {
+            answer1.classList.add('wrong-answer')
+        } else if (currentAnswer === 'b') {
+            answer2.classList.add('wrong-answer')
+        } else if (currentAnswer === 'c') {
+            answer3.classList.add('wrong-answer')
+        } else if (currentAnswer === 'd') {
+            answer4.classList.add('wrong-answer')
+        } 
+    }
+    quizCheckButton.classList.remove('hidden')
+    quizNextButton.classList.add('hidden')
+    quizFinishButton.classList.add('hidden')
+}
+
+function hideRightWrongAnswer() {
+    answer1.classList.remove('wrong-answer', 'right-answer')
+    answer2.classList.remove('wrong-answer', 'right-answer')
+    answer3.classList.remove('wrong-answer', 'right-answer')
+    answer4.classList.remove('wrong-answer', 'right-answer')
+}
+
+function renewCounter() {
+    currentQuestion = Number(currentQuestion) + 1
+    currentNumber.innerHTML = currentQuestion
 }

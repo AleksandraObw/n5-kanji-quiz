@@ -91,7 +91,7 @@ quizFinishButton.addEventListener('click', event => {
 
 buttonNumber.addEventListener('click', event => {
     event.preventDefault()
-    if ((Number(inputNumber.value) > 0) && (Number(inputNumber.value) < 101)) {
+    if ((Number(inputNumber.value) > 0) && (Number(inputNumber.value) < 51)) {
         infoNumber.classList.remove('error-state')
         inputNumber.classList.remove('error-state')
         numberOfQuestions = Number(inputNumber.value)
